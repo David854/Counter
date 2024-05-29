@@ -15,7 +15,9 @@ incrementButton.addEventListener('click', () => {
 
 decrementButton.addEventListener('click', () => {
     playSound();
-    count--;
+    if (count > 0) {
+        count--;
+    }
     updateCounter();
 });
 
@@ -29,12 +31,12 @@ setValueButton.addEventListener('click', () => {
     const userValue = prompt("Enter the new counter value:", count);
     if (userValue !== null) {
         const newValue = parseInt(userValue, 10);
-        if (!isNaN(newValue)) {
+        if (!isNaN(newValue) && newValue >= 0) {
             playSound();
             count = newValue;
             updateCounter();
         } else {
-            alert("Please enter a valid number.");
+            alert("Please enter a valid non-negative number.");
         }
     }
 });
